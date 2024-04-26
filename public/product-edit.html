@@ -1,62 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product List</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Product Edit Page</title>
+    <link rel="stylesheet" href="css/admin.css"> <!-- Ensure the path to your CSS file is correct -->
 </head>
-
 <body>
-    
     <header>
         <div class="container">
-            <h1 class="logo">Vintage Treasures</h1>
+            <h1 class="logo">Vintage Treasures Admin</h1>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="bulk-upload.html">Bulk Upload</a></li>
                     <li><a href="product-edit.html">Product Edit</a></li>
+                    <li><a href="index.html">Sign Out</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    
-    <section class="product-list">
+    <section class="product-edit">
         <div class="container">
-            <h2>Products</h2>
-            
+            <h2>Edit Product</h2>
+            <form id="productForm">
+                <label for="productName">Name:</label>
+                <input type="text" id="productName" name="productName" required>
+
+                <label for="productDescription">Description:</label>
+                <textarea id="productDescription" name="productDescription" required></textarea>
+
+                <label for="productCategory">Category:</label>
+                <input type="text" id="productCategory" name="productCategory" required>
+
+                <label for="productPrice">Price:</label>
+                <input type="number" id="productPrice" name="productPrice" required min="0.01" step="0.01">
+
+                <button type="submit">Save Changes</button>
+            </form>
         </div>
     </section>
 
-   
-   <section class="cart-section">
-       <div class="container">
-           <h2>Your Cart</h2>
-           <table class="cart-items">
-               <thead>
-                   <tr>
-                       <th>Item Name</th>
-                       <th>Price</th>
-                       <th>Action</th>
-                   </tr>
-               </thead>
-               <tbody>
-                  
-               </tbody>
-           </table>
-           <div class="cart-total">
-               <p>Total: $0.00</p>
-           </div>
-           <button class="btn checkout-button">Checkout</button>
-       </div>
-   </section>
-
-    
     <footer>
         <div class="container">
             <p>&copy; 2024 Vintage Treasures. All rights reserved.</p>
@@ -67,9 +52,50 @@
         </div>
     </footer>
 
-    
-    <script src="js/script.js"></script>
-</body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('productForm');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const productData = {
+                    name: document.getElementById('productName').value,
+                    description: document.getElementById('productDescription').value,
+                    category: document.getElementById('productCategory').value,
+                    price: parseFloat(document.getElementById('productPrice').value),
+                };
+                updateProduct(productData);
+            });
+        });
 
+        function updateProduct(productData) {
+            fetch('/api/products', {
+                method: 'POST', // Change to 'PUT' if updating an existing product
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(productData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+                alert('Product updated successfully!');
+                // Optionally reset the form or handle navigation
+                // form.reset();
+                // window.location.href = 'products.html'; // Redirect to products page
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error updating product.');
+            });
+        }
+    </script>
+
+</body>
 </html>
+
 
