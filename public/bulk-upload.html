@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Upload Page</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">Vintage Treasures Admin</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="bulk-upload.html">Bulk Upload</a></li>
+                    <li><a href="product-edit.html">Product Edit</a></li>
+                    <li><a href="index.html">Sign Out</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="bulk-upload">
+        <div class="container">
+            <h2>Bulk Upload</h2>
+            <form action="upload_handler.php" method="post" enctype="multipart/form-data">
+                <p>Select a file to upload:</p>
+                <input type="file" name="fileToUpload" id="fileToUpload" accept=".json, .csv, .txt">
+                <input type="submit" value="Upload File" name="submit">
+            </form>
+            <div class="instructions">
+                <h3>Instructions:</h3>
+                <p>Please select a file containing product data in JSON, CSV, or text format.</p>
+                <p>Example file format:</p>
+                <pre>
+                    {
+                        "products": [
+                            {
+                                "name": "Product 1",
+                                "description": "Description of Product 1",
+                                "category": "Category Name",
+                                "image_path": "images/product1.jpg",
+                                "price": 50.00
+                            },
+                            {
+                                "name": "Product 2",
+                                "description": "Description of Product 2",
+                                "category": "Category Name",
+                                "image_path": "images/product2.jpg",
+                                "price": 40.00
+                            }
+                        ]
+                    }
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Vintage Treasures. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
