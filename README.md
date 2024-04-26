@@ -22,6 +22,30 @@ Vintage Treasures is your go-to destination for finding one-of-a-kind vintage it
 - Add items to your shopping cart for easy checkout.
 - Enjoy a seamless shopping experience with our responsive design.
 
+
+
+## Updates Summary:
+Dynamic Product Display:
+Added functionality to load product details from a backend server and display them on products.html.
+
+Cart Features:
+Implemented features to add items to a shopping cart, update the total, and remove items on products.html.
+
+Product Editing:
+Set up product-edit.html for editing and adding products with form submissions handled via JavaScript.
+
+Feedback and Error Handling:
+Improved user feedback and error handling for API interactions.
+
+Key Files Modified:
+script.js: Updated to include product loading, cart management, and product form handling.
+products.html: Configured for dynamic product display and cart interaction.
+product-edit.html: Equipped with a form for product modifications.
+
+Usage:
+Products Page: Products load automatically and can be added to the shopping cart.
+Edit Page: Use the form to add or update products in the database.
+
 ## Installation
 
 ### Prerequisites
